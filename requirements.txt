@@ -1,7 +1,8 @@
 python-decouple
-git+https://github.com/pyrogram/pyrogram@master
+pyrogram 
 cryptg
 gitpython
 asyncio
 python-dotenv
 tgcrypto
+PhoenixScanner
