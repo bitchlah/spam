@@ -1,8 +1,7 @@
 import os
-from pyrogram import Client, filters
+from pyrogram import filters, Client as RedSeven
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from PhoenixScanner import Phoenix
-from .. import pbot as RedSeven 
+from PhoenixScanner import Phoenix 
 
 
 RED = Phoenix(os.getenv("RED7_TOKEN"))
