@@ -1,7 +1,7 @@
-import os, asyncio
+import os
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from PhoenixScanner import Phoenix
+from PhoenixScanner import Phoenix 
 from asyncio import get_event_loop, sleep
 
 
@@ -14,23 +14,25 @@ async def update_list():
    SCANLIST = newlist
    await sleep(60)
 
-loop = get_event_loop()
+loop = get_event_loop() 
 loop.create_task(update_list())
-
-@Client.on_message(filters.user(SCANLIST) & filters.group & filters.all)
+   
+@Client.on_message(filters.group & filters.all)
 async def red7xphoenix(bot: Client, message: Message):
    user = message.from_user
    chat = message.chat
-   user = await bot.get_users(user.id)
-   msg = f"""
-** Alert ⚠️**
+   
+   if int(user.id) in SCANLIST:
+      user = await bot.get_users(user.id)
+      msg = f"""
+ Alert ⚠️
 User [{user.first_name}](tg://user?id={user.id}) is officially
 Scanned by Team Red7 | Phoenix API ;)
 Appeal [Here](https://t.me/Red7WatchSupport)
 """
-   try:
-      await bot.ban_chat_member(chat.id, user.id)
-      await bot.send_message(chat.id, msg, disable_web_page_preview=True)
-   except:
-      await bot.send_message(chat.id, msg, disable_web_page_preview=True)
-      pass
+      try:
+         await bot.ban_chat_member(chat.id, user.id)
+         await bot.send_message(chat.id, msg, disable_web_page_preview=True)
+      except:
+         await bot.send_message(chat.id, msg, disable_web_page_preview=True)
+         pass
