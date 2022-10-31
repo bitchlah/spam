@@ -49,6 +49,6 @@ Appeal [Here](https://t.me/Red7WatchSupport) |
 
 (Press on below button to remove this shit.Else it may put your groups, Chat in danger)
 """
-      await m.reply_text(msg, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Ban", callback_data=f"ban:ban:{user}")]])
+      await m.reply_text(msg, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Ban", callback_data=f"ban:ban:{user}")]]))
   else:
      pass
