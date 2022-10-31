@@ -185,11 +185,4 @@ async def draid(xspam: Client, e: Message):
              pass
 
 
-@Client.on_message( ~filters.me & filters.incoming)
-async def watcher(_, msg: Message):
-    global RUSERs
-    id = msg.from_user.id
-    if int(id) in RUSERs:
-       reply = choice(REPLYRAID)
-       await msg.reply_text(reply)
        
