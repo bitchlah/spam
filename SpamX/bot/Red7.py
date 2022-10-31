@@ -1,5 +1,5 @@
 import os
-from pyrogram import filters, Client as bot
+from pyrogram import filters, Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from PhoenixScanner import Phoenix 
 
@@ -12,7 +12,7 @@ def call_back_filter(data):
 
 def is_admin(group_id: int, user_id: int):
     try:
-        user_data = bot.get_chat_member(group_id, user_id)
+        user_data = Client.get_chat_member(group_id, user_id)
         if user_data.status == 'administrator' or user_data.status == 'creator':
             return True
         else:
@@ -20,13 +20,13 @@ def is_admin(group_id: int, user_id: int):
     except:
         return False
 
-@bot.on_callback_query(call_back_filter("kick"))
+@Client.on_callback_query(call_back_filter("kick"))
 def kick_callback(_, query):
     user = query.data.split(":")[2]
     if is_admin(query.message.chat.id,
                 query.from_user.id) and query.data.split(":")[1] == "kick":
-        bot.ban_chat_member(query.message.chat.id, user)
-        bot.unban_chat_member(query.message.chat.id, user)
+        Client.ban_chat_member(query.message.chat.id, user)
+        Client.unban_chat_member(query.message.chat.id, user)
         query.answer('Kicked!')
         query.message.edit(
             f'Kick User [{user}](tg://user?id={user})\n Admin User [{query.from_user.id}](tg://user?id={query.from_user.id})',
@@ -35,12 +35,12 @@ def kick_callback(_, query):
         message.reply('You are not admin!')
 
 
-@bot.on_callback_query(call_back_filter("ban"))
+@Client.on_callback_query(call_back_filter("ban"))
 def ban_callback(_, query):
     user = query.data.split(":")[2]
     if is_admin(query.message.chat.id,
                 query.from_user.id) and query.data.split(":")[1] == "ban":
-        bot.ban_chat_member(query.message.chat.id, user)
+        Client.ban_chat_member(query.message.chat.id, user)
         query.answer('Banned')
         query.message.edit(
             f'Banned User [{user}](tg://user?id={user})\n Admin User [{query.from_user.id}](tg://user?id={query.from_user.id})',
@@ -49,12 +49,12 @@ def ban_callback(_, query):
         message.reply('You are not admin!')
 
 
-@bot.on_callback_query(call_back_filter("mute"))
+@Client.on_callback_query(call_back_filter("mute"))
 def mute_callback(_, query):
     user = query.data.split(":")[2]
     if is_admin(query.from_user.id,
                 query.message.chat.id) and query.data.split(":")[1] == "mute":
-        bot.restrict_chat_member(
+        Client.restrict_chat_member(
             query.message.chat.id,
             user,
             ChatPermissions(can_send_messages=False),
@@ -67,15 +67,11 @@ def mute_callback(_, query):
         message.reply('You are not admin!')
 
 
-@bot.on_message(filters.new_chat_members)
-async def botrm(bot: bot, m: Message): 
+@Client.on_message(filters.new_chat_members)
+async def botrm(_, m: Message): 
   user = m.from_user.id
   check = RED.check(user)
   if check["is_gban"]:
-    try:
-      x = await bot.get_users(user)
-      title = x.first_name
-    except:
       title = m.from_user.first_name
       msg = f"""
  Alert ⚠️
