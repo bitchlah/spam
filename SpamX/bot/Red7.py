@@ -22,12 +22,12 @@ def is_admin(group_id: int, user_id: int):
 def ban_callback(_, query: CallbackQuery):
   user = query.data.split(":")[2]
   if is_admin(query.message.chat.id, query.from_user.id) and query.data.split(":")[1] == "ban":
-      await bot.ban_chat_member(query.message.chat.id, user)
-      await query.answer('Banned Successfully')
-      await query.message.edit( f'Banned User [{user}](tg://user?id={user})\n Admin User [{query.from_user.id}](tg://user?id={query.from_user.id})', parse_mode='markdown')
+       bot.ban_chat_member(query.message.chat.id, user)
+       query.answer('Banned Successfully')
+       query.message.edit( f'Banned User [{user}](tg://user?id={user})\n Admin User [{query.from_user.id}](tg://user?id={query.from_user.id})', parse_mode='markdown')
  
   else: 
-     await query.answer('You are not admin!')
+      query.answer('You are not admin!')
 
 
 @RedSeven.on_message(filters.new_chat_members)
