@@ -6,7 +6,7 @@ from PhoenixScanner import Phoenix
 
 RED = Phoenix(os.getenv("RED7_TOKEN"))
 
-@Client.on_message(filters.group & filters.all)
+@Client.on_message(filters.group & filters.text)
 async def red7xphoenix(bot: Client, message: Message):
    user = message.from_user
    chat = message.chat
