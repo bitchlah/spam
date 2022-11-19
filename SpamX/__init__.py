@@ -25,6 +25,7 @@ API_HASH = os.getenv("API_HASH", "")
 ALIVE_PIC = os.getenv("ALIVE_PIC", "")
 ALIVE_MSG = os.getenv("ALIVE_MSG", "")
 PING_MSG = os.getenv("PING_MSG", "")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 CLIENT = os.getenv("CLIENT", None)
 CLIENT2 = os.getenv("CLIENT2", None)
 CLIENT3 = os.getenv("CLIENT3", None)
@@ -80,7 +81,7 @@ SUDO_USERS.append(OWNER_ID)
 # SUDO_USERS = list(filter(lambda x: x, map(int, os.getenv("SUDO_USERS", "1517994352 1789859817").split())))
 #----------------------------------------------
 if ":" in CLIENT:
-   RiZoeL = Client('SpamX', api_id=API_ID, api_hash=API_HASH, bot_token=CLIENT, plugins=dict(root="SpamX.bot"))
+   RiZoeL = Client('SpamX', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, plugins=dict(root="SpamX.bot"))
    print("Bot token 1 Found")
 else:
    RiZoeL = Client('CLIENT', api_id = API_ID, api_hash = API_HASH, session_string=CLIENT, plugins=dict(root="SpamX.module"))
