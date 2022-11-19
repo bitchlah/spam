@@ -133,6 +133,11 @@
             "value": "",
             "required": false
         },
+      "BOT_TOKEN": {
+            "description": "Bot Token id space by space or leave blank",
+            "value": "",
+            "required": false
+        },
       "OWNER_ID": {
             "description": "Sudo users id space by space",
             "value": "",
